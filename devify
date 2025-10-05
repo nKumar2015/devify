@@ -123,6 +123,7 @@ case "$device_name" in
     notify "$device_name" "network_adapter"
     ;;
   *)
-    notify "$device_name" ""
+    safe_name=$(echo "$device_name" | tr '[:upper:]' '[:lower:]' | tr -cd '[:alnum:]_-')
+    notify "$device_name" "custom_$safe_name"
   ;;
 esac
